@@ -12,7 +12,7 @@ class Solution:
                 if gp == 1:
                     if j-i < num_ops:
                         num_ops = j-i
-                        # break
+                        break
                 g = gp
         return N -1 + num_ops if num_ops < math.inf else -1
         
