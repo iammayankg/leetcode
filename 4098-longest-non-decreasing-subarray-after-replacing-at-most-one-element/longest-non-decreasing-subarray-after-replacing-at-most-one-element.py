@@ -12,13 +12,13 @@ class Solution:
         # Calculate prefix lengths
         for i in range(1, N):
             if nums[i] >= nums[i-1]:
-                prefix[i] = prefix[i-1] + 1
+                prefix[i] += prefix[i-1]
             # else: prefix[i] remains 1, as a new non-decreasing subarray starts
 
         # Calculate suffix lengths
         for i in range(N - 2, -1, -1):
             if nums[i] <= nums[i+1]:
-                suffix[i] = suffix[i+1] + 1
+                suffix[i] += suffix[i+1]
             # else: suffix[i] remains 1
 
         # Initialize result with the longest non-decreasing subarray without any replacement
