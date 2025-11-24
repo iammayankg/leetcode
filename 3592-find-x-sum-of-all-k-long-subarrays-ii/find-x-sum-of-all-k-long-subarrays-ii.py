@@ -10,7 +10,7 @@ class Solution:
             nonlocal x
             nonlocal currSum
             # print(f"Before rebalance: remainder={remainder} top={top}")
-            if top and (remainder[-1][0] > top[0][0] or (remainder[-1][0] == top[0][0] and remainder[-1][1] > top[0][1])):
+            if top and remainder and (remainder[-1][0] > top[0][0] or (remainder[-1][0] == top[0][0] and remainder[-1][1] > top[0][1])):
                 f1, n1 = top.pop(0)
                 currSum -= f1*n1
                 f2, n2 = remainder.pop(-1)
@@ -58,7 +58,8 @@ class Solution:
                 #     del frequency[num]
             # print(f"***** remove={num} *******")
             frequency[num] -= 1
-            remainder.add((frequency[num], num))
+            if frequency[num] != 0:
+                remainder.add((frequency[num], num))
             rebalance()
 
         for num in nums[:k]:
