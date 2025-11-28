@@ -19,6 +19,7 @@ class Solution:
             return cnt, res
 
         low, high = max(nums), sum(nums)
+        result = -1
         while low <= high:
             mid = (low + high)//2
             res, l = nsplits(mid)
@@ -27,8 +28,9 @@ class Solution:
             if res > k:
                 low = mid+1
             else:
+                result = mid
                 high = mid-1
-        return low
+        return result
         
             
         
