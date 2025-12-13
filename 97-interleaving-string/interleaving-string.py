@@ -22,6 +22,6 @@ class Solution:
             return res
 
         if N1 + N2 != N3:
-            print("early")
+            # print("early")
             return False
         return recurse(0, 0, 0)        
