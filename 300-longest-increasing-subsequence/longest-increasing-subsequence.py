@@ -1,8 +1,10 @@
+from functools import cache
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         N = len(nums)
         mem = {}
 
+        @cache
         def dp(index):
             if index == 0:
                 return 1
