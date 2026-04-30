@@ -1,21 +1,19 @@
+import math
+from functools import cache
+
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        coins.sort()
-        N = len(coins)
-        
         @cache
-        def dp(index, pending):
-            if pending == 0:
+        def dp(idx, remaining):
+            if remaining == 0:
                 return 0
-            if index == N:
-                return math.inf if pending else 0
-            ncoins = math.inf
-            for i in range(index, N):
-                if coins[i] > pending:
-                    break
-                ncoins = min(ncoins, 1 + dp(i, pending-coins[i]))
-                
-            return ncoins
-        ncoins = dp(0, amount)
-        return ncoins if ncoins < math.inf else -1
+            if idx == len(coins):
+                return math.inf
+            
+            curr_min = dp(idx + 1, remaining)
+            if remaining >= coins[idx]:
+                curr_min = min(curr_min, 1 + dp(idx, remaining-coins[idx]))
+            return curr_min
         
+        ret = dp(0, amount)
+        return ret if ret != math.inf else -1
